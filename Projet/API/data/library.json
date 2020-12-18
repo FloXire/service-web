@@ -20,10 +20,15 @@
             ]
         },
         {
-            "name": "La ferme de animaux",
+            "name": "La ferme des animaux",
             "author": "George Orwell",
             "id": "6cbc92e0-da86-11e7-b397-fd0e15229f62",
-            "copies": []
+            "copies": [
+                {
+                    "submissionDate": "2020/12/17",
+                    "id": "ff040fd8-1fb0-4525-9f87-18a39eaedd3c"
+                }
+            ]
         },
         {
             "name": "Assassin Apprentice",
@@ -31,6 +36,17 @@
             "publicationDate": "1995",
             "id": "90091c00-ddd8-11e7-a75e-7f7cd01ab94e",
             "copies": []
+        },
+        {
+            "name": "Mon super livre",
+            "author": "Me",
+            "id": "afe8d29d-1aaf-4c71-b2a0-71e960993580",
+            "copies": [
+                {
+                    "submissionDate": "2020/12/10",
+                    "id": "7772b316-9516-4bdc-bc4d-9046c97b4a36"
+                }
+            ]
         }
     ],
     "users": [
@@ -38,14 +54,32 @@
             "name": "Adrien",
             "age": 18,
             "id": "2b793500-dabc-11e7-96d9-3f4994e35ed5"
+        },
+        {
+            "name": "Florian Patérour",
+            "age": 21,
+            "id": "d7f65099-cb92-4457-965b-27d576bd184c"
+        },
+        {
+            "name": "Jean Paul",
+            "age": 80,
+            "id": "90335070-2db4-4c27-ae31-191bad62600c"
         }
     ],
     "loans": [
         {
-            "userId": "2b793500-dabc-11e7-96d9-3f4994e35ed5",
             "copyId": "3e35b560-dac1-11e7-92c1-a1c74e59ace4",
-            "loanDate": "2017/12/07",
-            "id": "33d16140-dac2-11e7-a2f4-494b3ae468c5"
+            "userId": "2b793500-dabc-11e7-96d9-3f4994e35ed5",
+            "bookId": "231ac800-da86-11e7-b11a-f1a3b541af38",
+            "id": "33d16140-dac2-11e7-a2f4-494b3ae468c5",
+            "loanDate": "2017/12/07"
+        },
+        {
+            "copyId": "ff040fd8-1fb0-4525-9f87-18a39eaedd3c",
+            "userId": "d7f65099-cb92-4457-965b-27d576bd184c",
+            "bookId": "6cbc92e0-da86-11e7-b397-fd0e15229f62",
+            "id": "7459c367-9115-496b-b744-b898962072cd",
+            "loanDate": "2020/12/18"
         }
     ]
 }

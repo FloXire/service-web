@@ -17,18 +17,19 @@ class BookRepository {
         return this.db.getData("/books");
     }
 
+    get(id) {
+        const books = this.getAll();
+        return _.find(books, { "id": id });
+    }
+
     add(book) {
         checkBook(book); 
         book.id = uuid();
         book.copies = []; // initialize empty copy array
+
         this.db.push("/books[]", book);
 
         return book;
-    }
-
-    get(id) {
-        const books = this.getAll();
-        return _.find(books, { id });
     }
 
     update(id, book) {

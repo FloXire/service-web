@@ -44,7 +44,7 @@ Des services sont utilisés par les différents composants afin de réaliser dif
 
 Commencez par ouvrir le service `book.service.ts` qui contient une implémentation complète de nos services REST. Notez d'abord les deux méthodes publiques `get` et `getAll` qui seront utilisées par nos composants. Elles utilisent le service `http`fourni par Angular, font un appel HTTP via la méthode `get` sur l'URL définie puis ensuite transforment le résultat en un objet `Book` ou un tableau d'objet `Book`.
 
-Le type de retour des fonctions n'est pas `Book[]` ou `Book` mais `Observable<XXX>`. Les appels HTTP sont asynchrones et renvoient un objet "observable" (de al librairie `rxjs`). Lorsque la réponse est reçue, différentes opérations peuvent être chaînées à cet observable. Si vous êtes curieux, allez voir dans le composant `book-list`: dans le fichier `.ts`, nous stockons cet observable dans la variable `books$`. Celle-ci est ensuite utilisée dans le fichier `.html` via l'instruction `*ngIf="books$ | async as books"`. Cette instruction permet de ne pas afficher l'élément tant que l'évènement asynchrone n'est pas fini. Une fois celui-ci fini, on récupère le résultat (un `Book[]`) dans la variable `books` qui est utilisé dans la suite du HTML.
+Le type de retour des fonctions n'est pas `Book[]` ou `Book` mais `Observable<XXX>`. Les appels HTTP sont asynchrones et renvoient un objet "observable" (de la librairie `rxjs`). Lorsque la réponse est reçue, différentes opérations peuvent être chaînées à cet observable. Si vous êtes curieux, allez voir dans le composant `book-list`: dans le fichier `.ts`, nous stockons cet observable dans la variable `books$`. Celle-ci est ensuite utilisée dans le fichier `.html` via l'instruction `*ngIf="books$ | async as books"`. Cette instruction permet de ne pas afficher l'élément tant que l'évènement asynchrone n'est pas fini. Une fois celui-ci fini, on récupère le résultat (un `Book[]`) dans la variable `books` qui est utilisé dans la suite du HTML.
 
 Regardez maintenant les autres services. Ils ne sont pas implémentés !! On utilise une fonction utilitaire pour créer un observable à partir d'objets statiques. A vous de jouer
 
@@ -92,9 +92,9 @@ this.copyService.getAvailable(book.id)
   .subscribe();
 ```
 
-On récupère les exemplaires disponibles pour chaque livres puis on ajoute ces exemplaires à l'objet `book`. Notez que cette implémentation n'est pas très efficace d'un point de vue réseau. En effet, nous devons faire un appel réseau supplémentaire pour chaque livre afin de récupérer ses examplaires. Si cette liste était longue, nous aurions énormémet d'appels concurrents, ce qui ralentirait grandement la vitesse de chargement de la page. C'est ce qu'on appelle l'under-fetching (nous ne récupérons pas toutes les informations nécessaires sur la ressource `books` en un seul appel).
+On récupère les exemplaires disponibles pour chaque livres puis on ajoute ces exemplaires à l'objet `book`. Notez que cette implémentation n'est pas très efficace d'un point de vue réseau. En effet, nous devons faire un appel réseau supplémentaire pour chaque livre afin de récupérer ses examplaires. Si cette liste était longue, nous aurions énormément d'appels concurrents, ce qui ralentirait grandement la vitesse de chargement de la page. C'est ce qu'on appelle l'under-fetching (nous ne récupérons pas toutes les informations nécessaires sur la ressource `books` en un seul appel).
 
-Note: l'appel à la fonction `.subscribe()` est nécessaire ici pour déclancher la requête HTTP. Précédemment c'était le code `| async` dans les fichiers HTML qui le faisait pour nous.
+Note: l'appel à la fonction `.subscribe()` est nécessaire ici pour déclencher la requête HTTP. Précédemment c'était le code `| async` dans les fichiers HTML qui le faisait pour nous.
 
 ### Liste des emprunts
 
@@ -121,7 +121,7 @@ Note: vous devrez créer un nouveau modèle de données `Loan` dans le dossier `
 
 Dans le fichier `loan-list.component.ts` du composant, inspirez-vous du composant `book-list` pour récupérer la liste des emprunts et exposer une méthode permettant de rendre un emprunt.
 
-Note: n'oubliez pas d'ajouter un `.subscribe()` après avoir appelé la méthode `return` sinon la requête HTTP n'est pas déclanchée (voir la méthode `onClosed` du fichier `book-loan.component.ts`)
+Note: n'oubliez pas d'ajouter un `.subscribe()` après avoir appelé la méthode `return` sinon la requête HTTP n'est pas déclenchée (voir la méthode `onClosed` du fichier `book-loan.component.ts`)
 
 #### Template du composant
 
@@ -131,4 +131,4 @@ Enfin dans le fichier `.html` du composant, affichez la liste des emprunts de la
 
 Utilisez enfin les services `user` et `book` dans votre composant pour ne plus afficher les IDs mais les noms de l'emprunteur et du livre.
 
-Encore une fois, nous avond de l'under-fetching pusique nous devons faire 2 appels HTTP pour chaque emprunt.
+Encore une fois, nous avons de l'under-fetching puisque nous devons faire 2 appels HTTP pour chaque emprunt.

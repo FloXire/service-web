@@ -5,7 +5,8 @@ class BookController {
 
     getAll(req, res) {
         const books = this.bookRepository.getAll();
-        res.json(books);
+        //res.json(books);
+        res.status(200).send(books);
     }
 
     create(req, res) {

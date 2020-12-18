@@ -1,0 +1,38 @@
+<button
+  class="btn btn-primary mb-3"
+  (click)="init()"
+>Refresh
+</button>
+<div
+  class="row"
+  *ngIf="loans$ | async as loans"
+>
+  <div
+    *ngFor="let loan of loans"
+    class="col-lg-6"
+  >
+    <div class="card mb-3"
+      *ngIf="!loan.hidden"
+    >
+      <h4 class="card-header">
+        {{loan.bookName}}
+      </h4>
+      <div class="card-body">
+        <h5 class="card-title">User</h5>
+        <p class="card-text">{{loan.userName}}</p>
+        <h5
+          class="card-title"
+          *ngIf="loan.loanDate"
+        >Loan date</h5>
+        <p
+          class="card-text"
+          *ngIf="loan.loanDate"
+        >{{loan.loanDate}}</p>
+        <a
+          class="btn btn-outline-primary"
+          (click)="return(loan)"
+        >Return</a>
+      </div>
+    </div>
+  </div>
+</div>

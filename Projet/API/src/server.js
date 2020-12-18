@@ -7,27 +7,42 @@ const bodyParser = require('body-parser');
 // Import de nos objets
 const bookRoutes = require('./api/routes/bookRoutes');
 const userRoutes = require('./api/routes/userRoutes');
+const copyRoutes = require('./api/routes/copyRoutes');
+const loanRoutes = require('./api/routes/loanRoutes')
 
 const BookController = require('./api/controllers/bookController');
+const UserController = require('./api/controllers/userController');
+const CopyController = require('./api/controllers/copyController');
+const LoanController = require('./api/controllers/loanController');
 
 const BookRepository = require('./repositories/bookRepository');
+const UserRepository = require('./repositories/userRepository');
+const CopyRepository = require('./repositories/copyRepository');
+const LoanRepository = require('./repositories/loanRepository');
 
 // Création de nos objets
 const db = new JsonDB("./data/library", true, true);
+
 const bookRepository = new BookRepository(db);
+const userRepository = new UserRepository(db);
+const copyRepository = new CopyRepository(db, bookRepository);
+const loanRepository = new LoanRepository(db, copyRepository);
+
 const bookController = new BookController(bookRepository);
-/* A compléter */
+const userController = new UserController(userRepository);
+const copyController = new CopyController(copyRepository);
+const loanController = new LoanController(loanRepository);
 
 // Création du serveur
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // requêtes interprétées comme étant du JSON
 app.use(cors());
 
 // Configuration des routes
-bookRoutes(app, bookController);
-userRoutes(app, null /* A modifier */);
-/* A compléter */
-
+bookRoutes(app, bookController, loanController);
+userRoutes(app, userController, loanController);
+copyRoutes(app, copyController);
+loanRoutes(app, loanController);
 
 function errorHandler(err, req, res, next) {
     console.error(err);

@@ -1,12 +1,12 @@
-import { Observable, pipe } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import {Observable, pipe} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Book } from '../model/book';
-import { BookService } from '../services/book.service';
-import { CopyService } from '../services/copy.service';
-import { Copy } from '../model/copy';
+import {Book} from '../model/book';
+import {BookService} from '../services/book.service';
+import {CopyService} from '../services/copy.service';
+import {Copy} from '../model/copy';
 
 @Component({
   selector: 'app-book-list',
@@ -16,25 +16,23 @@ import { Copy } from '../model/copy';
 export class BookListComponent implements OnInit {
   public books$: Observable<Book[]>;
 
-  constructor(private bookService: BookService, private copyService: CopyService) { }
+  constructor(private bookService: BookService, private copyService: CopyService) {
+  }
 
-  ngOnInit() { this.init(); }
+  ngOnInit() {
+    this.init();
+  }
 
   public init() {
     this.books$ = this.bookService.getAll()
-      .pipe(
-        tap(this.addCopies.bind(this))
-      );
+      .pipe(tap(this.addCopies.bind(this)));
   }
 
   private addCopies(books: Book[]) {
     for (const book of books) {
-      book.copies = [ new Copy('', '') ];
-      // this.copyService.getAvailable(book.id)
-      //  .pipe(
-      //    map(copies => book.copies = copies)
-      //  )
-      //  .subscribe();
+      this.copyService.getAvailable(book.id)
+        .pipe(map(copies => book.copies = copies))
+        .subscribe();
     }
   }
 }

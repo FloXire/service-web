@@ -46,10 +46,8 @@ export class BookLoanComponent implements OnInit {
     this.ngxSmartModalService.getModal('loanModal').close();
 
     if (event.user && event.isValidated) {
-      this.loanService.loan(this.loanCopyId, event.user.id)
-        .pipe(
-          tap(() => this.router.navigateByUrl('/users'))
-        )
+      this.loanService.loan(this.bookId, this.loanCopyId, event.user.id)
+        .pipe(tap(() => this.router.navigateByUrl('/users')))
         .subscribe();
     }
 

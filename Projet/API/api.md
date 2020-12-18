@@ -122,7 +122,7 @@ La librairie `lodash` contient un ensemble de fonctions utilitaires. Nous nous e
 Naviguez maintenant dans le dossier `api/controllers`. Les controllers sont les objets qui sont responsables de traiter une requête HTTP et de renvoyer un réponse appropriée. Ouvrez le fichier `bookController.js`. Il implémente la classe `BookController` contenant des méthodes pour chacune des opérations sur la ressource `livre`. Chacune de ses méthodes prend en entrée les paramètres `req` et `res`. `req` contient les données de la requête (request) et `res` permet de définir la réponse à renvoyer (response).
 
 - `req.params.bookId` permet de récupérer l'id du livre dans l'url de la requête ;
-- `res.status(xxx)` définit le code réponse envoyé au client. L'instruction `.send(xxx)` définit le corps de la réponse. On peut noter que pour la usppression, nous ne renvoyons rien ;
+- `res.status(xxx)` définit le code réponse envoyé au client. L'instruction `.send(xxx)` définit le corps de la réponse. On peut noter que pour la suppression, nous ne renvoyons rien ;
 - `res.location(xxx)` permet de définir le header `Location` dans la réponse après la création d'un objet. Il indique au client comment accéder à la ressource créée.
 
 Notez également que le répertoire précédemment vu est injecté dans le constructeur du controller. Il permet de réaliser les opérations voulues par le controller.
@@ -244,7 +244,7 @@ Utilisez Postman pour créer 2 exemplaires au livre 1984. Ils devront avoir la p
 
 ## Gestion des emprunts
 
-A vous de jouer pour implémenter les fonctionnalités liées à la gestion des emprunts via l'URL `/loans`. Un emprunt doit avoir en paramètre un exemplaire de livre (celu-ci doit être disponible) ainsi qu'un utilisateur. Nous sauvegarderons cet emprunt de la même façon qu'un livre ou qu'un utilisateur.
+A vous de jouer pour implémenter les fonctionnalités liées à la gestion des emprunts via l'URL `/loans`. Un emprunt doit avoir en paramètre un exemplaire de livre (celui-ci doit être disponible) ainsi qu'un utilisateur. Nous sauvegarderons cet emprunt de la même façon qu'un livre ou qu'un utilisateur.
 
 Voici quelques conseils.
 
